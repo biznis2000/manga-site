@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Manga</title>
+  <style>
+    /* Basic styling for the form */
+    form {
+      max-width: 400px;
+      margin: auto;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }   
+    input, select, textarea {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add Manga</h1>
+  <form id="manga-form">
+    <input type="text" id="title" placeholder="Title" required>
+    <input type="text" id="genre" placeholder="Genre (comma-separated)" required>
+    <input type="number" id="rating" placeholder="Rating" required>
+    <input type="text" id="status" placeholder="Status (true/false)" required>
+    <input type="text" id="type" placeholder="Type" required>
+    <input type="number" id="views" placeholder="Views" required>
+    <input type="number" id="chap" placeholder="Chapters" required>
+    <textarea id="dis" placeholder="Description"></textarea>
+    <input type="file" id="image" accept="image/*" required>
+    <button type="submit">Add Manga</button>
+  </form>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAMbL4z3cchR6FhBqLWZRVOWSif3nw8bEk",
+      authDomain: "managa-site.firebaseapp.com",
+      databaseURL: "https://managa-site-default-rtdb.firebaseio.com",
+      projectId: "managa-site",
+      storageBucket: "managa-site.appspot.com",
+      messagingSenderId: "30254231613",
+      appId: "1:30254231613:web:d48d98f9f8deb93f2e7a54",
+      measurementId: "G-GYLL5C44EW"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const firestore = getFirestore(app);
+    const storage = getStorage(app);
+
+    // Listen for form submission
+    document.getElementById('manga-form').addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      // Get form values
+      const title = document.getElementById('title').value;
+      const genre = document.getElementById('genre').value.split(',').map(g => g.trim());
+      const rating = Number(document.getElementById('rating').value);
+      const status = document.getElementById('status').value === 'true';
+      const type = document.getElementById('type').value;
+      const views = Number(document.getElementById('views').value);
+      const chap = Number(document.getElementById('chap').value);
+      const dis = document.getElementById('dis').value;
+      const imageFile = document.getElementById('image').files[0];
+
+      try {
+        // Upload image to Firebase Storage
+        const storageRef = ref(storage, `images/${encodeURIComponent(imageFile.name)}`);
+        const snapshot = await uploadBytes(storageRef, imageFile);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+
+        // Save document to Firestore
+        await addDoc(collection(firestore, 'manga'), {
+          Date: serverTimestamp(),
+          Genre: genre,  // This is treated as an array
+          Rating: rating,
+          Status: status,
+          Type: type,
+          Views: views,
+          chap: chap,
+          dis: dis,
+          title: title,
+          url: downloadURL
+        });
+
+        alert('Manga added successfully!');
+        document.getElementById('manga-form').reset();
+      } catch (error) {
+        console.error('Error details:', error.message, error.stack);
+        alert('Failed to add manga. Check the console for details.');
+      }
+    });
+  </script>
+</body>
+</html>
