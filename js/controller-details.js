@@ -78,8 +78,8 @@ if (docId) {
                                     </div>
                                 </div>
                                 <div class="anime__details__btn">
-                                    <a href="#" class="watch-btn"><i class="fa fa-angle-left"></i><span>First</span></a>
-                                    <a href="#" class="watch-btn"><span>Last</span> <i class="fa fa-angle-right"></i></a>
+                                    <a href="anime-watching.html?id=${doc.id}&chapter=1" class="watch-btn"><i class="fa fa-angle-left"></i><span>First</span></a>
+                                    <a href="anime-watching.html?id=${doc.id}&chapter=${data.chap}" class="watch-btn"><span>Last</span> <i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
                         </div>
