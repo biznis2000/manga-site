@@ -85,7 +85,7 @@ getDocs(colRef).then((querySnapshot) => {
     }
 
     // Slice the first 12 items
-    const selectedDocs = docsArray.slice(0, 8);
+    const selectedDocs = docsArray.slice(0, 3);
 
     selectedDocs.forEach((doc) => {
         const data = doc.data;
