@@ -143,3 +143,54 @@ if (docId) {
 } else {
     console.log("No ID found in URL");
 }
+if (docId) {
+    console.log("Document ID found:", docId);
+
+    // Fetch the document with the specified ID
+    const docRef = doc(db, 'manga', docId);
+
+    getDoc(docRef).then((docSnap) => {
+        if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+            const data = docSnap.data();
+
+            const productItem = document.createElement('div');
+            productItem.innerHTML = `
+                <div class="anime__details__episodes">
+                    <div class="section-title">
+                        <h5>جميع الفصول</h5>
+                    </div>
+                    <div id="chapter-links"></div>
+                </div>
+            `;
+            document.getElementById('product-EP-1').appendChild(productItem);
+
+            // Assuming 'chapters' is a field in the document data
+            const chapters = data.chap;
+            console.log("Number of chapters:", chapters);
+
+            const chapterLinksContainer = productItem.querySelector('#chapter-links');
+            const baseUrl = 'anime-watching.html'; // Base URL of the destination page
+
+            for (let i = 1; i <= chapters; i++) {
+                const chapterLink = document.createElement('a');
+                chapterLink.href = `${baseUrl}?id=${docSnap.id}&chapter=${i}`; // Append doc.id and chapter number as query parameters
+                chapterLink.textContent = i < 10 ? `0${i}` : i; // Add leading zero for single-digit numbers
+                chapterLinksContainer.appendChild(chapterLink);
+            }
+
+            // Apply background images
+            document.querySelectorAll('.set-bg').forEach(element => {
+                const bg = element.getAttribute('data-setbg');
+                console.log("Setting background image for element:", element, "with background:", bg);
+                element.style.backgroundImage = `url(${bg})`;
+            });
+        } else {
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.error("Error getting document:", error);
+    });
+} else {
+    console.log("No ID found in URL");
+}
