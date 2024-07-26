@@ -141,7 +141,7 @@ getDocs(colRef).then((querySnapshot) => {
     topDocsArray.sort((a, b) => b.data.Views - a.data.Views);
 
     // Slice the first 8 items
-    const selectedDocs = topDocsArray.slice(0, 8);
+    const selectedDocs = topDocsArray.slice(0, 3);
 
     selectedDocs.forEach((doc) => {
         const data = doc.data;
