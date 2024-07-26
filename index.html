@@ -13,7 +13,6 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
@@ -99,6 +98,7 @@
             </div>
         </div>
     </section>
+
     <section class="product spad">
         <div class="container">
             <div class="row">
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="product-list"></div> 
+                        <div class="row" id="product-list"></div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-8">
@@ -125,36 +125,12 @@
                             <div class="section-title">
                                 <h5>سكس كومكس</h5>
                             </div>
-                            <div>
-                                <!-- Ad Block 1 -->
-                                <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-                                <ins id="1062896" data-width="300" data-height="262"></ins>
-                                <script type="text/javascript" data-cfasync="false" async>
-                                    (adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1062896});
-                                </script>
-                                <!-- Ad Block 2 -->
-                                <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-                                <ins id="1062900" data-width="300" data-height="262"></ins>
-                                <script type="text/javascript" data-cfasync="false" async>
-                                    (adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1062900});
-                                </script>
-                                <!-- Ad Block 3 -->
-                                <div id="product-top"></div>
-
-                                <script type="text/javascript">juicy_adzone = '1062901';</script>
-                                <script type="text/javascript" src="https://poweredby.jads.co/js/jfc.js" charset="utf-8"></script>
-                                <!-- Ad Block 4 -->
-                                <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-                                <ins id="1062903" data-width="300" data-height="262"></ins>
-                                <script type="text/javascript" data-cfasync="false" async>
-                                    (adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1062903});
-                                </script>
-                                <!-- Ad Block 5 -->
-                                <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-                                <ins id="1062904" data-width="300" data-height="262"></ins>
-                                <script type="text/javascript" data-cfasync="false" async>
-                                    (adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1062904});
-                                </script>
+                            <div id="product-top"></div>
+                            <div id="ad-container">
+                                <!-- Ads will be inserted here -->
+                            </div>
+                            <div id="ad-container-t">
+                                <!-- Ads will be inserted here -->
                             </div>
                         </div>
                     </div>
@@ -162,19 +138,14 @@
             </div>
         </div>
     </section>
-    <!-- Product Section End -->
+
+    <!-- Ads Section -->
     <section class="ads-section">
         <div id="Ads-one">
-            <!-- Direct Ad Code Integration -->
-            <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-            <ins id="1062899" data-width="908" data-height="270"></ins>
-            <script type="text/javascript" data-cfasync="false" async>
-                (adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1062899});
-            </script>
+            <!-- Placeholder for Ad -->
         </div>
     </section>
-    
-    
+
     <!-- Footer Section Begin -->
     <footer class="footer">
         <div class="page-up">
@@ -182,8 +153,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                </div>
+                <div class="col-lg-3"></div>
                 <div class="col-lg-6">
                     <div class="footer__nav">
                         <ul>
@@ -221,5 +191,33 @@
     <script type="module" src="js/controller.js"></script>
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
     <script type="module" src="js/ads.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const adContainer = document.getElementById('Ads-one');
+            
+            // Create and load ad script
+            const adScript = document.createElement('script');
+            adScript.src = 'https://poweredby.jads.co/js/jads.js';
+            adScript.type = 'text/javascript';
+            adScript.async = true;
+
+            // Create ad ins element
+            const ins = document.createElement('ins');
+            ins.id = '1062899';
+            ins.setAttribute('data-width', '908');
+            ins.setAttribute('data-height', '270');
+            ins.setAttribute('data-adzone', '1062899');
+
+            // Append elements to the ad container
+            adContainer.appendChild(ins);
+            adContainer.appendChild(adScript);
+
+            // Initialize the ad after script loads
+            adScript.onload = function() {
+                (adsbyjuicy = window.adsbyjuicy || []).push({'adzone': 1062899});
+            };
+        });
+    </script>
 </body>
+
 </html>

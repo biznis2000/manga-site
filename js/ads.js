@@ -1,20 +1,104 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const adsone = document.getElementById('Ads-one');
+    const adContainer = document.getElementById('ad-container');
+    const adScripts = [
+        {
+            id: '1062896',
+            width: '300',
+            height: '262',
+            adzone: 1062896
+        },
+        {
+            id: '1062900',
+            width: '300',
+            height: '262',
+            adzone: 1062900
+        },
+        {
+            id: '1062903',
+            width: '300',
+            height: '262',
+            adzone: 1062903
+        },
+        {
+            id: '1062904',
+            width: '300',
+            height: '262',
+            adzone: 1062904
+        }
+    ];
 
-    // Create a new div element for the ad content
-    const productItem = document.createElement('div');
-    // productItem.classList.add('container');
+    // Function to create and insert ad elements
+    function loadAd(adConfig) {
+        const script = document.createElement('script');
+        script.src = 'https://poweredby.jads.co/js/jads.js';
+        script.type = 'text/javascript';
+        script.async = true;
 
-    // Set the inner HTML of the new div to include the ad script and ad zone
-    productItem.innerHTML = `
-                <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-                <ins id="1062899" data-width="908" data-height="270"></ins>
-                <script type="text/javascript" data-cfasync="false" async>
-                    (adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1062899});
-                </script>
-       
-    `;
+        const ins = document.createElement('ins');
+        ins.id = adConfig.id;
+        ins.setAttribute('data-width', adConfig.width);
+        ins.setAttribute('data-height', adConfig.height);
 
-    // Append the new div to the #ADs-one element
-    adsone.appendChild(productItem);
+        adContainer.appendChild(ins);
+        adContainer.appendChild(script);
+
+        script.onload = function() {
+            (adsbyjuicy = window.adsbyjuicy || []).push({'adzone': adConfig.adzone});
+        };
+    }
+
+    // Load all ads
+    adScripts.forEach(adConfig => loadAd(adConfig));
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const adContainer = document.getElementById('ad-container-t');
+    const adScripts = [
+        {
+            id: '1062896',
+            width: '300',
+            height: '262',
+            adzone: 1062896
+        },
+        {
+            id: '1062900',
+            width: '300',
+            height: '262',
+            adzone: 1062900
+        },
+        {
+            id: '1062903',
+            width: '300',
+            height: '262',
+            adzone: 1062903
+        },
+        {
+            id: '1062904',
+            width: '300',
+            height: '262',
+            adzone: 1062904
+        }
+    ];
+
+    // Function to create and insert ad elements
+    function loadAd(adConfig) {
+        const script = document.createElement('script');
+        script.src = 'https://poweredby.jads.co/js/jads.js';
+        script.type = 'text/javascript';
+        script.async = true;
+
+        const ins = document.createElement('ins');
+        ins.id = adConfig.id;
+        ins.setAttribute('data-width', adConfig.width);
+        ins.setAttribute('data-height', adConfig.height);
+
+        adContainer.appendChild(ins);
+        adContainer.appendChild(script);
+
+        script.onload = function() {
+            (adsbyjuicy = window.adsbyjuicy || []).push({'adzone': adConfig.adzone});
+        };
+    }
+
+    // Load all ads
+    adScripts.forEach(adConfig => loadAd(adConfig));
 });
