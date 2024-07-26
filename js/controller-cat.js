@@ -23,25 +23,34 @@ const urlParams = new URLSearchParams(window.location.search);
 const docId = urlParams.get('id');
 let docsArray = [];
 const itemsPerPage = 12;
+let searchTerm = ''; // Variable to hold the search term
 
-getDocs(colRef).then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        docsArray.push({ id: doc.id, data: doc.data() });
-    });
+// Function to get documents and filter by search term
+function getFilteredDocs() {
+    getDocs(colRef).then((querySnapshot) => {
+        docsArray = [];
+        querySnapshot.forEach((doc) => {
+            docsArray.push({ id: doc.id, data: doc.data() });
+        });
 
-    // Sort the array by timestamp in ascending order (oldest to newest)
-    docsArray.sort((a, b) => a.data.Date + b.data.Date);
+        // Sort the array by timestamp in ascending order (oldest to newest)
+        docsArray.sort((a, b) => a.data.Date + b.data.Date);
 
-    if (docId) {
+        // Filter docsArray based on the search term
+        if (searchTerm) {
+            docsArray = docsArray.filter(doc => doc.data.title.toLowerCase().includes(searchTerm.toLowerCase()));
+        }
+
         // Filter docsArray based on the presence of docId in the Genre array
-        docsArray = docsArray.filter(doc => doc.data.Genre && doc.data.Genre.includes(docId));
-        renderItems(1); // Render filtered items
-    } else {
+        if (docId) {
+            docsArray = docsArray.filter(doc => doc.data.Genre && doc.data.Genre.includes(docId));
+        }
+
         renderItems(1); // Render items for the first page
-    }
-}).catch((error) => {
-    console.error("Error getting documents: ", error);
-});
+    }).catch((error) => {
+        console.error("Error getting documents: ", error);
+    });
+}
 
 // Function to render items based on the current page
 function renderItems(page) {
@@ -127,6 +136,15 @@ function renderPagination(currentPage) {
         pagination.appendChild(nextPageLink);
     }
 }
+
+// Event listener for the search input
+document.getElementById('search-input').addEventListener('input', (event) => {
+    searchTerm = event.target.value;
+    getFilteredDocs(); // Fetch and filter documents based on the search term
+});
+
+// Initial fetch and render
+getFilteredDocs();
 
 // Fetch top views data and initialize
 getDocs(colRef).then((querySnapshot) => {
