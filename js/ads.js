@@ -102,3 +102,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load all ads
     adScripts.forEach(adConfig => loadAd(adConfig));
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const adContainer = document.getElementById('Ads-one');
+    
+    // Create and load ad script
+    const adScript = document.createElement('script');
+    adScript.src = 'https://poweredby.jads.co/js/jads.js';
+    adScript.type = 'text/javascript';
+    adScript.async = true;
+
+    // Create ad ins element
+    const ins = document.createElement('ins');
+    ins.id = '1062899';
+    ins.setAttribute('data-width', '908');
+    ins.setAttribute('data-height', '270');
+    ins.setAttribute('data-adzone', '1062899');
+
+    // Append elements to the ad container
+    adContainer.appendChild(ins);
+    adContainer.appendChild(adScript);
+
+    // Initialize the ad after script loads
+    adScript.onload = function() {
+        (adsbyjuicy = window.adsbyjuicy || []).push({'adzone': 1062899});
+    };
+});
