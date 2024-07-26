@@ -127,3 +127,62 @@ document.addEventListener('DOMContentLoaded', function() {
         (adsbyjuicy = window.adsbyjuicy || []).push({'adzone': 1062899});
     };
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const adContainer = document.getElementById('Ads-one');
+    
+    // Create and load ad script
+    const adScript = document.createElement('script');
+    adScript.src = 'https://poweredby.jads.co/js/jads.js';
+    adScript.type = 'text/javascript';
+    adScript.async = true;
+
+    // Create ad ins element
+    const ins = document.createElement('ins');
+    ins.id = '1062899';
+    ins.setAttribute('data-width', '908');
+    ins.setAttribute('data-height', '270');
+    ins.setAttribute('data-adzone', '1062899');
+
+    // Append elements to the ad container
+    adContainer.appendChild(ins);
+    adContainer.appendChild(adScript);
+
+    // Initialize the ad after script loads
+    adScript.onload = function() {
+        (adsbyjuicy = window.adsbyjuicy || []).push({'adzone': 1062899});
+    };
+});
+    document.addEventListener('DOMContentLoaded', function() {
+        const adContainer = document.getElementById('Ads-one-fly');
+
+        // Create and configure the script for the second ad
+        const adScript1 = document.createElement('script');
+        adScript1.type = 'text/javascript';
+        adScript1.textContent = "juicy_adzone = '1062901';";
+
+        const adScript2 = document.createElement('script');
+        adScript2.src = 'https://poweredby.jads.co/js/jfc.js';
+        adScript2.charset = 'utf-8';
+
+        // Append the scripts to the ad container
+        adContainer.appendChild(adScript1);
+        adContainer.appendChild(adScript2);
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const adContainer = document.getElementById('Ads-one-fly');
+
+        // Create and configure the script for the second ad
+        const adScript1 = document.createElement('script');
+        adScript1.type = 'text/javascript';
+        adScript1.textContent = "juicy_adzone = '1062901';";
+
+        const adScript2 = document.createElement('script');
+        adScript2.src = 'https://poweredby.jads.co/js/jfc.js';
+        adScript2.charset = 'utf-8';
+
+        // Append the scripts to the ad container
+        adContainer.appendChild(adScript1);
+        adContainer.appendChild(adScript2);
+    });
+
+
