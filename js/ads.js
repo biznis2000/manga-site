@@ -186,3 +186,87 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
+    document.addEventListener('DOMContentLoaded', function() {
+        const adContainer = document.getElementById('Ads-tow');
+        
+        // Create and load ad script
+        const adScript = document.createElement('script');
+        adScript.src = 'https://poweredby.jads.co/js/jads.js';
+        adScript.type = 'text/javascript';
+        adScript.async = true;
+    
+        // Create ad ins element
+        const ins = document.createElement('ins');
+        ins.id = '1062907';
+        ins.setAttribute('data-width', '908');
+        ins.setAttribute('data-height', '270');
+        ins.setAttribute('data-adzone', '1062907');
+    
+        // Append elements to the ad container
+        adContainer.appendChild(ins);
+        adContainer.appendChild(adScript);
+    
+        // Initialize the ad after script loads
+        adScript.onload = function() {
+            (adsbyjuicy = window.adsbyjuicy || []).push({'adzone': 1062899});
+        };
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const adContainer = document.getElementById('Ads-tow');
+        
+        // Create and load ad script
+        const adScript = document.createElement('script');
+        adScript.src = 'https://poweredby.jads.co/js/jads.js';
+        adScript.type = 'text/javascript';
+        adScript.async = true;
+    
+        // Create ad ins element
+        const ins = document.createElement('ins');
+        ins.id = '1062907';
+        ins.setAttribute('data-width', '908');
+        ins.setAttribute('data-height', '270');
+        ins.setAttribute('data-adzone', '1062907');
+    
+        // Append elements to the ad container
+        adContainer.appendChild(ins);
+        adContainer.appendChild(adScript);
+    
+        // Initialize the ad after script loads
+        adScript.onload = function() {
+            (adsbyjuicy = window.adsbyjuicy || []).push({'adzone': 1062899});
+        };
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to inject the ad after a delay
+        function injectAd() {
+            const adContainer = document.getElementById('ads-section-mob');
+    
+            // Create and configure the ad scripts
+            const adScript1 = document.createElement('script');
+            adScript1.type = 'text/javascript';
+            adScript1.setAttribute('data-cfasync', 'false');
+            adScript1.async = true;
+            adScript1.src = 'https://poweredby.jads.co/js/jads.js';
+    
+            const adIns = document.createElement('ins');
+            adIns.id = '1062970';
+            adIns.setAttribute('data-width', '300');
+            adIns.setAttribute('data-height', '112');
+    
+            const adScript2 = document.createElement('script');
+            adScript2.type = 'text/javascript';
+            adScript2.setAttribute('data-cfasync', 'false');
+            adScript2.async = true;
+            adScript2.textContent = "(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1062970});";
+    
+            // Append the scripts to the ad container
+            adContainer.appendChild(adScript1);
+            adContainer.appendChild(adIns);
+            adContainer.appendChild(adScript2);
+        }
+    
+        // Inject the ad after a delay (e.g., 30 seconds)
+        setTimeout(injectAd, 30000); // 30,000 milliseconds = 30 seconds
+    });
+    
